@@ -2,10 +2,12 @@
 Disclaimer: this is my first try at .js.
 
 Electron and three installed through npm:
+```
 > mkdir PROJECT_DIR && cd PROJECT_DIR
 > npm init -y
 > npm install electron --save
 > npm install three --save
+```
 
 To be able to import modules in .js files, they need to be declared as 
 <script type="module" src="file.js"></script>.
