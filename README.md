@@ -9,8 +9,10 @@ Electron and three installed through npm:
 > npm install three --save
 ```
 
-To be able to import modules in .js files, they need to be declared as 
+To be able to import modules in .js files, they need to be declared as modules as such
+```
 <script type="module" src="file.js"></script>.
+```
 
 In addition, to be able to make import statements, an importmap has to be declared in 
 index.html:
