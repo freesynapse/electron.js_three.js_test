@@ -1,0 +1,12 @@
+body {
+    margin: 0px;
+    overflow: hiddern;
+}
+
+.full-screen {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
