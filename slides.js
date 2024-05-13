@@ -1,10 +1,13 @@
 
 import * as THREE from 'three'
+import { OrbitControls } from 'OrbitControls';
+
+let renderer, scene, camera, controls;
 
 //
 function init() {
     // initialize the renderer
-    var renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer();
 
     // This is usually used for HiDPI device to prevent blurring output canvas (docs)
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -19,25 +22,25 @@ function init() {
 
     // Scenes allow you to set up what and where is to be rendered by three.js. This is where you place objects, lights, and cameras (docs)
     // We initialize a scene and get a reference to it which we store in the variable scene
-    var scene = new THREE.Scene();
+    scene = new THREE.Scene();
 
     // Initialize a camera that uses perspective projection (docs)
     // The second parameter set the ratio of camera view to the ratio of the window itself
     // The third and the fourth parameters decide the near and far plane of the camera
     // Any object with a lower distance than the third parameter will not be visible
     // Any object with a higher distance than the fourth parameter will not be visible
-    var camera = new THREE.PerspectiveCamera(
+    camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
         1,
-        10000000);
+        1000);
 
     // Set the position of the in the scene
-    camera.position.set(0, 0, 0);
+    camera.position.set(0, 0, 10);
 
     // Make the camera point in a particular direction
     // We don't really have a lot of things to points towards so pointing towards a point at the (10, 0, 0) coordinates does not sound like a bad idea.
-    camera.lookAt(10, 0, 0);
+    camera.lookAt(0, 0, 0);
 
     // the geometry that we want the shape to be
     // parameters are the radius, width segments, and height segments
@@ -54,16 +57,30 @@ function init() {
     var sphere = new THREE.Mesh( geometry, material );
 
     // setting the positon of the sphere to x = 10
-    sphere.position.set(10, 0, 0)
+    sphere.position.set(0, 0, 0)
 
     // the sphere to the scene
     scene.add( sphere );
 
     // push the scene and the camera into the renderer
+    // renderer.render(scene, camera);
+    controls = new OrbitControls(camera, renderer.domElement);
+    // console.log(controls);
+}
+
+//
+function animate()
+{
+    requestAnimationFrame(animate);
+
+    controls.update();
+
     renderer.render(scene, camera);
+
 }
 
 init();
+animate();
 
 
 
